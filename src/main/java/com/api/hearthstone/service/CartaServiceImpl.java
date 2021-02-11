@@ -6,6 +6,7 @@ import javax.ws.rs.core.Response;
 
 
 import com.api.hearthstone.entidade.Carta;
+import com.api.hearthstone.excecoes.AtaqueOuDefesaIncorretoException;
 import com.api.hearthstone.excecoes.CartaNaoExisteException;
 import com.api.hearthstone.excecoes.MaximoDeCartasException;
 import com.api.hearthstone.repository.CartaRepository;
@@ -52,6 +53,9 @@ public class CartaServiceImpl implements CartaService {
 			cartaRepository.adicionarCarta(carta);
 			return Response.status(Response.Status.CREATED).entity(carta).build();
 		} catch (MaximoDeCartasException e) {
+			e.printStackTrace();
+			return Response.status(Response.Status.NOT_ACCEPTABLE).entity(e.getMessage()).build();
+		} catch (AtaqueOuDefesaIncorretoException e) {
 			e.printStackTrace();
 			return Response.status(Response.Status.NOT_ACCEPTABLE).entity(e.getMessage()).build();
 		} catch (Exception e) {

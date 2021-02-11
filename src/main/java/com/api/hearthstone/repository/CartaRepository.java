@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.api.hearthstone.entidade.Carta;
 import com.api.hearthstone.entidade.enums.EnumClasse;
 import com.api.hearthstone.entidade.enums.EnumTipo;
+import com.api.hearthstone.excecoes.AtaqueOuDefesaIncorretoException;
 import com.api.hearthstone.excecoes.CartaNaoExisteException;
 import com.api.hearthstone.excecoes.MaximoDeCartasException;
 
@@ -44,19 +45,33 @@ public class CartaRepository {
     	}
     }
     
-    public void adicionarCarta(Carta carta) throws MaximoDeCartasException {
+    public void adicionarCarta(Carta carta) throws MaximoDeCartasException, AtaqueOuDefesaIncorretoException {
     	if (cartas.size() >= 30) {
     		throw new MaximoDeCartasException();
     	}
     	if (buscarCartasIguais(carta).size() >= 2) {
     		throw new MaximoDeCartasException();
     	}
+    	if (!verificarAtaqueDefesa(carta)) {
+    		throw new AtaqueOuDefesaIncorretoException();
+    	}
     	if (carta.getId() == 0) {
     		carta.setId(gerarId(cartas.size() + 1));
+    		cartas.put(carta.getId(), carta);
     	}
-    	cartas.put(carta.getId(), carta);
     }
     
+    /**
+     * Verifica se o ataque e defesa da carta está dentro do limite de 0 a 10
+     * @param carta
+     * @return {@link Boolean}
+     */
+    public Boolean verificarAtaqueDefesa(Carta carta) {
+    	if ( (carta.getAtaque() >= 0 && carta.getAtaque() <= 10) && (carta.getDefesa() >=0 && carta.getDefesa() <=10) ) {
+    		return true;
+    	}
+		return false;
+    }
     
     /**
      * Verifica se possui mais de duas cartas iguais no baralho
