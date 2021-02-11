@@ -24,4 +24,4 @@ OBS1*: No body da requisição passar um Json no seguinte padrão:
 ```
 OBS2*: Os enum aceitos são:
 - tipo -> "MAGIA","CRIATURA",null
-- classe - "MAGO","PALADINO", "DRUIDA", "QUALQUER"
+- classe - "MAGO","PALADINO", "DRUIDA", "QUALQUER",null
