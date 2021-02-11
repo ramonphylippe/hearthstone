@@ -21,7 +21,6 @@ public class CartaRepository {
 	
 	private static Map<Integer, Carta> cartas = new HashMap<>();
 	
-	
 	public List<Carta> consultarTodas() {
         return new ArrayList<Carta>(cartas.values());
     }
