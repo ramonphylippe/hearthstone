@@ -32,13 +32,18 @@ public class CartaServiceImpl implements CartaService {
 			carta = cartaRepository.consultarPorId(id);
 			if (carta != null) {
 				return Response.ok(carta).build();
+			} else {
+				throw new CartaNaoExisteException();
 			}
 		} catch (CartaNaoExisteException e) {
 			e.printStackTrace();
+			return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
 		} catch (Exception e) {
 			e.printStackTrace();
+			return Response.status(404).build();
 		}
-		return Response.status(404).build();
+		
+		
 	}
 
 	@Override
@@ -63,9 +68,10 @@ public class CartaServiceImpl implements CartaService {
 			return Response.ok().build();
 		} catch (CartaNaoExisteException e) {
 			e.printStackTrace();
+			return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
+		} catch (Exception e) {
+			return Response.status(404).build();
 		}
-		return Response.status(404).build();
-		
 	}
 	
 	

@@ -74,8 +74,6 @@ public class CartaRepository {
     }
     
     
-    
-    
     /**
      * auxilia no incremento de id's da entidade
      * @param cont
@@ -88,10 +86,15 @@ public class CartaRepository {
         return cont;
     }
     
+    
     @PostConstruct
 	public void init() {
-		cartas.put(01, new Carta(01, "Mago negro", "descrição legal", 8, 3, EnumTipo.MAGIA, EnumClasse.MAGO));
-		cartas.put(02, new Carta(02, "Hulk", "verde e grande", 10, 10, EnumTipo.CRIATURA, EnumClasse.QUALQUER));
+		cartas.put(01, new Carta(01, "Lâmina Vill Illidari", "Dervixe rodopiante de devastação demoníaca.", 5, 3, EnumTipo.CRIATURA, EnumClasse.DRUIDA));
+		cartas.put(02, new Carta(02, "Lobo Silvestre", "As outras feras adoram ficar perto de lobos silvestres.", 1, 1, EnumTipo.CRIATURA, EnumClasse.CACADOR));
+		cartas.put(03, new Carta(03, "Sinalizador", "Não só revela os inimigos, como também é ótimo para festas!.", 0, 0, EnumTipo.MAGIA, EnumClasse.CACADOR));
+		cartas.put(04, new Carta(04, "Seta de Gelo", "É de praxe gritar 'Fica frio!' ou 'Estátua!' ou até 'Não esquenta!' quando se joga este card.", 0, 0, EnumTipo.MAGIA, EnumClasse.MAGO));
+		cartas.put(05, new Carta(05, "Lady Liadrin", "Quando o assunto é feitiço, ela prefere os incunábulos mais cabulosos.", 4, 6, EnumTipo.MAGIA, EnumClasse.MAGO));
+		cartas.put(06, new Carta(06, "Seta de Gelo", "É de praxe gritar 'Fica frio!' ou 'Estátua!' ou até 'Não esquenta!' quando se joga este card.", 0, 0, EnumTipo.CRIATURA, EnumClasse.PALADINO));
 	}
 
 }
